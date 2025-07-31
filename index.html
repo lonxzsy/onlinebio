@@ -80,9 +80,14 @@
             transition: transform 0.5s ease, opacity 0.5s ease;
         }
 
+        .username-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
         .username {
             font-size: 24px;
-            margin: 0 auto 20px auto;
+            margin: 0 auto;
             font-weight: bold;
             cursor: pointer;
             display: inline-block;
@@ -94,6 +99,30 @@
             transform: translateY(10px);
             opacity: 0;
             transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+
+        .status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 5px;
+            font-size: 14px;
+            color: #ff3b3b;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #ff3b3b;
+            margin-left: 5px;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.1); }
+            100% { opacity: 0.3; transform: scale(0.8); }
         }
 
         .social-links {
@@ -167,12 +196,6 @@
             animation: none;
         }
 
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
-        }
-
         .typing-text {
             position: fixed;
             top: 50%;
@@ -183,6 +206,7 @@
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
             opacity: 0;
             z-index: 100;
+            transition: opacity 0.8s ease;
         }
 
         .particle {
@@ -232,7 +256,13 @@
 
     <div class="bio-container" id="bioContainer">
         <img src="assets/img/avatar.jpg" alt="Аватарка" class="avatar" id="avatar">
-        <h1 class="username" id="username">@fildovv</h1>
+        <div class="username-container">
+            <h1 class="username" id="username">@fildovv</h1>
+            <div class="status">
+                <span>offline</span>
+                <div class="status-dot"></div>
+            </div>
+        </div>
         
         <div class="social-links">
             <a href="https://t.me/mureana" class="social-link delay-1" target="_blank" id="link1">
@@ -274,7 +304,7 @@
                     setTimeout(() => {
                         typingText.style.display = 'none';
                         showBio();
-                    }, 1000);
+                    }, 800);
                 }, 2000);
             }
         }
